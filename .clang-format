@@ -1,0 +1,29 @@
+BasedOnStyle: LLVM
+AlignConsecutiveAssignments: AcrossComments
+AlignAfterOpenBracket: BlockIndent
+AlignArrayOfStructures: Right
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+  AlignCompound: true
+  AlignFunctionDeclarations: true
+  AlignFunctionPointers: true
+  PadOperators: true
+AlignConsecutiveDeclarations:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+  AlignCompound: true
+  AlignFunctionDeclarations: true
+  AlignFunctionPointers: true
+  PadOperators: true
+AlignConsecutiveMacros: AcrossComments
+IndentPPDirectives: BeforeHash
+BinPackArguments: true
+BinPackParameters: AlwaysOnePerLine
+ColumnLimit: 100
+PointerAlignment: Left
+SeparateDefinitionBlocks: Leave
+BreakAfterReturnType: TopLevel
+EmptyLineBeforeAccessModifier: LogicalBlock
