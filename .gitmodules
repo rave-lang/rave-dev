@@ -1,9 +1,9 @@
 [submodule "rave-treesitter"]
 	path = rave-treesitter
-	url = https://github.com/rave-lang/rave-treesitter
+	url = git@github.com:rave-lang/rave-treesitter.git
 [submodule "rave"]
 	path = rave
-	url = https://github.com/rave-lang/rave
+	url = git@github.com:rave-lang/rave.git
 [submodule "rave-vscode"]
 	path = rave-vscode
-	url = https://github.com/rave-lang/rave-vscode
+	url = git@github.com:rave-lang/rave-vscode.git
