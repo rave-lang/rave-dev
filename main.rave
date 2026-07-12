@@ -1,0 +1,173 @@
+
+
+
+#local = rave.host()
+#string_pool = local.alloc()
+
+
+add $T = 10
+	x:i32 = 20
+	y:i32 = 30
+-> 	out: i32 
+	x + y
+	
+x = add(40)
+
+
+
+
+@local main :: x,y,z: i32 -> i32
+    name: u32; type: u32;
+	
+	
+    log <- "Hello World", 20 ,"200"
+
+    log <- testing
+
+    a > 10 =>
+        
+    player x = , y = add(10 10), z = 50 10 10 
+        -> make_level 10
+        -> make_something 20;
+
+    player: 
+        log <- .name;
+		player.(name,hp,level) = 10, hp 10, 10;
+		
+
+
+
+#config.name == Something
+
+
+@local main() :: int <-> int
+    let x: Player = Player x=10 y=20 z=30 
+
+
+import /aura/graphics/*.jpg
+
+
+a > b:
+    print "Hello World!"
+	print "Something"	
+	print x = 10 y = 30 z = 30
+	
+
+
+load_files(x: utf-8) -> void:
+
+json.number: '0'~'9' '.' '0'~'9' 'f'
+json.string: '"'
+
+\w :: ["\n", "\r", " ", "\t"]
+
+json {
+	number: ('0'~'9') '.' ('0'~'9' 'f')?  
+	string: '"' !'\\' '"'
+	bool: "true" | "false"
+	null: "null"
+	object: "{" \w [key_pair .* ","] \w  ','? \w "}"
+	key_pair = key: string \w ":" \w value: value
+	array: "[" \w [value .* ","] \w "]"
+	value: number | string | bool | null | object | array
+}
+
+
+
+json_number: ('0'~'9') .. ('.' .. '0'~'9' .. 'f')?
+json_string: '"' .. !['\\"'] .. '""'
+json_boolean: "true" | "false"
+json_null: "null"
+json_object: '{' .* (key=json_string .. ":" .. value=json_value .. "," ) .. "}"
+json_array: '[' .* (value=json_value .. ",") .. ']'
+json_value: json_number | json_string | json_null | json_boolean | json_array | json_object
+
+
+radar_packet:
+	.* 0xFF550300_u32 ..
+	targets: [3]{
+		s16 x
+		s16 y
+		s16 velocity
+		u16 pixel_distance
+	} ..
+	0x55CC
+	
+	
+Player x = "100" y = 1200 z = 600 =>
+
+
+
+
+string :: 
+
+json :: in <-> out
+	null :: .. 'null'
+	integer :: .. '0'~'9'
+	decimal :: .. integer ('.' '0'~'9' 'f'?) 
+	object  :: ..
+		'{'
+			out <- object {
+				key_pair: .. [key:string ":" value:value ","]* =>
+					out <- key = decode(key), value = parse_type($value)
+			}
+			
+		'}'
+	array :: .. 
+		'[' out <- array { 
+				value: .. [v: value ","]* 
+				out <- parse_value(v) 
+			} 
+		']'
+	
+json.null 	 :: 'null' 							<-> null
+json.integer :: ('0'~'9'+) 						<-> i64
+json.decimal :: json.integer ('.' '0'~'9' 'f'?) <-> f64
+json.number  :: json.integer | json_decimal
+json.object  :: '{' 
+					@object_begin 
+					[json.string ':' json.value ',']+
+					@object_end 
+				'}' 							<-> (key = json.string, value = json.value)
+
+
+
+
+
+json.value   :: json.null | json.number | json.object | json.array | json.bool
+json.number  :: json.integer | json.decimal
+json.bool 	 :: bool 		<-> ('true': @true) | ('false': @false)	
+json.null 	 :: null 		<-> 'null'
+json.integer :: i64  		<-> ('0'~'9'+)
+json.decimal :: f64  		<-> json.integer ('.' '0'~'9' 'f'?)
+json.array	 :: [value]* 	<-> '[' [json.value ","]* ']'
+json.object  :: object[]* 	<-> '{' 
+	@object {
+		[json.string ':' json.value ',']+
+	} 
+'}'
+
+
+
+json :: in <-> out
+	null :: .. 'null'
+	integer :: .. '0'~'9'+
+	decimal :: .. integer ('.' '0'~'9' 'f'?) 
+	object  :: ..
+		'{'
+			@object {
+				key_pair: .. [key:string ":" value:value ","]* =>
+					out @json_pair = decode(key), value = parse_type($value)
+			}
+			
+		'}'
+	array :: .. 
+		'[' @array { 
+				value: .. [v: value ","]* 
+				@parse_value(v) 
+			} 
+		']'
+	
+	
+	
+	

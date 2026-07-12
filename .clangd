@@ -2,4 +2,6 @@ CompileFlags:
   Add:
     - "-std=c++23"
     - "-std=c11"
+    - "-I./rave/src/"
+    - "-I./rave/include/"
     - "-IC:\\tools\\llvm\\include"
